@@ -1,4 +1,9 @@
 package ru.borisov.ecommerce.repository;
 
-public class CategoryRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import ru.borisov.ecommerce.model.Category;
+
+@Repository
+public interface CategoryRepo extends JpaRepository<Category, Integer> {
 }
