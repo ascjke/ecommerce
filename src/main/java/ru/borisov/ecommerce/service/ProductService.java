@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.borisov.ecommerce.dto.ProductDto;
+import ru.borisov.ecommerce.exceptions.ProductNotExistException;
 import ru.borisov.ecommerce.model.Category;
 import ru.borisov.ecommerce.model.Product;
 import ru.borisov.ecommerce.repository.ProductRepo;
@@ -51,14 +52,16 @@ public class ProductService {
     }
 
     public void updateProduct(ProductDto productDto, int productId) {
-        Product product = productRepo.findById(productId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Product with id=" + productId + " doesn't exist"));
-
+        Product product = findById(productId);
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setImageUrl(productDto.getImageUrl());
         product.setPrice(productDto.getPrice());
         productRepo.save(product);
+    }
+
+    public Product findById(int productId) {
+        return productRepo.findById(productId)
+                .orElseThrow(() -> new ProductNotExistException("Product id=" + productId + " doesn't exist"));
     }
 }
