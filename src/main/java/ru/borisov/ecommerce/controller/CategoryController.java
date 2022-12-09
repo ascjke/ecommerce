@@ -20,7 +20,9 @@ public class CategoryController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category) {
         categoryService.createCategory(category);
-        return new ResponseEntity<>(new ApiResponse(true, "New category \"" + category.getCategoryName() + "\" is created"), HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                new ApiResponse(true,"New category \"" + category.getCategoryName() + "\" is created"),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
@@ -32,7 +34,9 @@ public class CategoryController {
     public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryId") int categoryId,
                                  @RequestBody Category category) {
         if (!categoryService.existsById(categoryId)) {
-            return new ResponseEntity<>(new ApiResponse(false, "Category with id=" + categoryId + " not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(
+                    new ApiResponse(false, "Category with id=" + categoryId + " not found"),
+                    HttpStatus.NOT_FOUND);
         }
         categoryService.editCategory(categoryId, category);
         return new ResponseEntity<>(new ApiResponse(true, "Category has been updated"), HttpStatus.OK);

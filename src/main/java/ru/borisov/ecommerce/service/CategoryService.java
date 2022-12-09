@@ -22,10 +22,13 @@ public class CategoryService {
     }
 
     public void editCategory(int categoryId, Category category) {
-        Category _category = categoryRepo.getById(categoryId);
-        _category.setCategoryName(category.getCategoryName());
-        _category.setDescription(category.getDescription());
-        _category.setImageUrl(category.getImageUrl());
+        Category _category = Category.builder()
+                .id(categoryId)
+                .categoryName(category.getCategoryName())
+                .description(category.getDescription())
+                .imageUrl(category.getImageUrl())
+                .build();
+
         categoryRepo.save(_category);
     }
 
