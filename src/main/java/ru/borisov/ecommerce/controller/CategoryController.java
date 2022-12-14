@@ -25,7 +25,7 @@ public class CategoryController {
                 HttpStatus.CREATED);
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public List<Category> listCategory() {
         return categoryService.listCategory();
     }

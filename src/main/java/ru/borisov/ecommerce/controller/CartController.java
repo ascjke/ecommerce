@@ -45,7 +45,7 @@ public class CartController {
         User user = authenticationService.getUser(token);
         cartService.deleteCartItem(itemId, user);
 
-        return new ResponseEntity<>(new ApiResponse(true, "Item has been removde"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(true, "Item has been removed"), HttpStatus.OK);
     }
 
 

@@ -23,12 +23,14 @@ public class Product {
     private String name;
 
     @NotNull
+    @Column(length = 512)
     private String imageUrl;
 
     @NotNull
     private double price;
 
     @NotNull
+    @Column(length = 2500)
     private String description;
 
     // ManyToOne

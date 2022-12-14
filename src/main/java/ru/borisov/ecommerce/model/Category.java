@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity
 @Table(name = "category")
@@ -25,9 +26,13 @@ public class Category {
     @NotBlank
     private String description;
 
-    @Column(name = "image_url")
+    @Column(length = 512)
     @NotBlank
     private String imageUrl;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    Set<Product> products;
 
     public Category(@NotBlank String categoryName, @NotBlank String description) {
         this.categoryName = categoryName;
