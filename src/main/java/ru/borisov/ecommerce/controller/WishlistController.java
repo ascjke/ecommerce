@@ -23,7 +23,7 @@ public class WishlistController {
     private final AuthenticationService authenticationService;
 
     // save product as WishList item
-    @PostMapping("/add/")
+    @PostMapping("/add")
     public ResponseEntity<ApiResponse> addToWishList(@RequestBody Product product,
                                                      @RequestParam("token") String token) {
         authenticationService.authenticate(token);

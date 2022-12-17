@@ -2,32 +2,27 @@ version: '3'
 
 services:
   postgres:
-    image: 'postgres:15'
+    image: 'postgres:14.5'
     container_name: 'java-postgres'
     env_file:
       - config/.envfile
     ports:
       - 5433:5432
     volumes:
-      - motherforum-data:/var/lib/postgresql/data
+      - ./ecommerce-data:/var/lib/postgresql/data
 
   app:
     build: ./
-    container_name: 'java-app'
+    container_name: 'ecommerce-app'
     environment:
       - 'PORT=8080'
-      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/motherforumdb'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce'
       - 'TZ=Asia/Yakutsk'
     ports:
-      - 8080:8080
+      - 8085:8080
     depends_on:
       - postgres
-    volumes:
-      - masterclass-photos:/var/lib/public/images
 
-volumes:
-  motherforum-data:
-  masterclass-photos:
 
 
 
