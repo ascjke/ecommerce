@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM adoptopenjdk/openjdk11:alpine
 
 LABEL maintainer="zakhar.borisov@mail.ru"
 
